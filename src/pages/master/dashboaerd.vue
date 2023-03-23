@@ -1,7 +1,7 @@
 <template>
     <div class="w-screen h-screen flex">
         <!--Side bar-->
-        <aside class="w-[200px] h-full bg-gray-200 text-white">
+        <aside class="w-[400px] h-full bg-gray-200 text-white"  v-show="showSide">
             <div class="h-[50px] bg-gray-900 flex justify-center items-center">
                 <h3 class="font-bold">Admin Dashboard</h3>
             </div>
@@ -100,10 +100,10 @@
                 <!-- User login -->
                 <div class="w-[200px] ">
                   <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-                    <a href="https://github.com/TarasBatyuchok" target=”_blank”>
+                    <a href="https://github.com/TarasBatyuchok" target=”_blank” class="border rounded-full border-slate-300 hover:border-indigo-300">
                     <img class="w-10 h-10 rounded-full border-2 border-gray-50" src="../../assets/gitHub.gif" alt="gif">
                     </a>
-                    <div class="font-semibold dark:text-white text-left">
+                    <div class="font-semibold dark:text-white text-left cursor-pointer">
                       <div>Taras B.</div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Admin</div>
                     </div>
@@ -135,8 +135,19 @@
 
 <script>
 export default {
+    data() {
+    return {
+      showDropDown: false,
+      showSide: true
+    }
+  },
 methods:{
-    toggleSideBar(){
+    toggleSideBar() {
+      this.showSide = !this.showSide
+
+    },
+    toggleDrop(){
+        this.showDropDown = !this.showDropDown
 
     }
 }
