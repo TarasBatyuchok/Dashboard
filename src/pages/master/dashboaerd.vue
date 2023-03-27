@@ -100,7 +100,7 @@
                 <!-- User login -->
                 <div class="w-[200px] ">
                   <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-                    <a href="https://github.com/TarasBatyuchok" target=”_blank” class="border rounded-full border-slate-300 hover:border-indigo-300">
+                    <a href="https://github.com/TarasBatyuchok" target=”_blank” class="border  border-slate-300 hover:border-indigo-300 rounded-full">
                     <img class="w-10 h-10 rounded-full border-2 border-gray-50" src="../../assets/gitHub.gif" alt="gif">
                     </a>
                     <div class="font-semibold dark:text-white text-left cursor-pointer">
