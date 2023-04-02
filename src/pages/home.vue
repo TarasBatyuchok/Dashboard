@@ -19,7 +19,7 @@
         <input type="text" class="border border-gray-500 p-1" v-model="price">
       </div>
       <div>
-        <button class="bg-gray-600 hover:bg-slate-500 text-white p-1.5" @click="saveData()">Save</button>
+        <button class="bg-gray-600 hover:bg-slate-500 text-white p-1.5" @click="saveData(haveId)">Save</button>
       </div>
       </div>
       <div class="overflow-x-auto relative  sm:rounded-lg">
@@ -77,7 +77,7 @@
               </td>
               <td class="py-4 px-6 text-right">
                 <a href="#" class="font-medium text-white p-2 bg-blue-500 hover:bg-blue-700 rounded-xl mx-1" @click="getData(data.id)">Edit</a>
-                <a href="#" class="font-medium text-white p-2 bg-red-500 hover:bg-red-700 rounded-xl">Delete</a>
+                <a href="#" class="font-medium text-white p-2 bg-red-500 hover:bg-red-700 rounded-xl" @click="deleteData(data.id)" >Delete</a>
               </td>
             </tr>
           </tbody>
@@ -95,44 +95,47 @@
         color:'',
         category: '',
         price: 0,
-
+        haveId: null,
         productyObj:[
         {
-          id:1,
+          id:0,
           name:  "Apple MacBook Pro 17",
           color: "silver",
           category: "Laptop",
           price: 2999
         },
-        {
-          id:2,
-          name:  "Hp",
-          color: "black",
-          category: "Laptop",
-          price: 1500
-        },
-        {
-          id:3,
-          name:  "Xiomi",
-          color: "black",
-          category: "Laptop",
-          price: 3000
-        },
-        {
-          id:4,
-          name:  "Iphone 20",
-          color: "gold",
-          category: "Phone",
-          price: 800
-        },
       ]
       }
     },
     methods:{
-      getData(id){
-        alert(id)
+      deleteData(id){
+        let index = this.productyObj.find((data) => data.id === id)
+        console.log(index.id)
+        //remove data by index
+        this.productyObj.splice(index, 1)
+
+
       },
-      saveData(){
+      getData(id){
+        this.haveId = id
+        let dataObj = this.productyObj.find( data => data.id === id);
+          this.name = dataObj.name
+          this.color = dataObj.color
+          this.category = dataObj.category
+          this.price = dataObj.price
+          console.log(dataObj)
+      },
+      saveData(haveId){
+        // update data
+        if(haveId){
+          let dataObj = this.productyObj.find( data => data.id === haveId);
+          dataObj.name = this.name
+          dataObj.color = this.color
+          dataObj.category = this.category
+          dataObj.price = this.price
+
+        }else{
+          //  Add data
         const id = this.productyObj.length + 1
         const data ={
           id:id,
@@ -141,8 +144,10 @@
           category: this.category,
           price:this.price,
         }
-        this.productyObj.push(data)
+        this.productyObj.push(data);
         console.log(this.productyObj)
+        }
+
       }
     }
   
